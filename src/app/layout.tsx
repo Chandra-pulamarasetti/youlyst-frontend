@@ -8,7 +8,6 @@ const openSansFont = Open_Sans({
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-open-sans",
 });
-345;
 
 export const metadata: Metadata = {
   title: "YouLyst | Market Place",

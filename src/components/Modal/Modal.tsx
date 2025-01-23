@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./modal.module.css";
 import Portal from "../Portal/Portal";
@@ -17,14 +17,14 @@ const Modal: React.FC<ModalProps> = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const [isClosing, setIsClosing] = useState(false);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsClosing(true);
 
     setTimeout(() => {
       setIsClosing(false);
       onClose?.();
     }, 300);
-  };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -49,7 +49,7 @@ const Modal: React.FC<ModalProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [handleClose]);
 
   return (
     <Portal>
